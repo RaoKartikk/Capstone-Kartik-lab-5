@@ -1,4 +1,4 @@
-v# 🚀 LearnFast — Responsive Educational Landing Page
+# 🚀 LearnFast — Responsive Educational Landing Page
 
 ## 📌 Project Theme
 LearnFast is a modern, responsive **landing page** designed for an online learning platform.  
