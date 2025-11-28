@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>LearnFast — Upskill Quickly</title>
+  <meta name="description" content="LearnFast — interactive courses, projects and mentor-led learning.">
+
+  <style>
+    /* --- Simple, example-like styles (inspired by your Foodie sample) --- */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    nav {
+      background-color: white;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+    }
+
+    nav h1 {
+      color: #2758ff;
+      margin: 0;
+      font-size: 20px;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 18px;
+      margin: 0;
+      padding: 0;
+      align-items: center;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #555;
+      font-weight: bold;
+      padding: 6px 8px;
+      border-radius: 6px;
+    }
+
+    nav a:hover {
+      color: #2758ff;
+      background: rgba(39,88,255,0.06);
+      transform: translateY(-2px);
+    }
+
+    .actions {
+      display:flex;
+      gap:10px;
+      align-items:center;
+    }
+
+    .btn {
+      background-color: #2758ff;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight:700;
+    }
+
+    .btn.ghost {
+      background: transparent;
+      color: #2758ff;
+      border: 1px solid rgba(39,88,255,0.12);
+      font-weight:700;
+    }
+
+    .btn:hover {
+      background-color: #1e40af;
+    }
+
+    section {
+      margin-bottom: 40px;
+      padding: 12px 0;
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 18px;
+      color: #2d3436;
+    }
+
+    /* Intro / hero */
+    #intro {
+      display: flex;
+      gap: 20px;
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      align-items:center;
+      box-shadow: 0 6px 20px rgba(2,6,23,0.04);
+    }
+
+    .intro-text {
+      flex: 1;
+      padding: 10px 20px;
+    }
+
+    .intro-text h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+      color: #1d2b4f;
+      line-height:1.05;
+    }
+
+    .intro-text p {
+      color: #555;
+      margin: 0 0 14px 0;
+    }
+
+    .intro-image {
+      width: 420px;
+      border-radius: 10px;
+      overflow: hidden;
+      flex-shrink:0;
+    }
+
+    .intro-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display:block;
+    }
+
+    /* Search-like decorative box (kept simple) */
+    .search-container {
+      background-color: white;
+      padding: 18px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+      margin: 18px 0;
+    }
+
+    .search-container input, .search-container select {
+      padding: 10px;
+      margin: 6px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      width: 200px;
+    }
+
+    /* Categories (simple chips) */
+    .category-list {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 0;
+      margin: 6px 0 0 0;
+    }
+
+    .category-item {
+      background: white;
+      padding: 10px 18px;
+      border-radius: 24px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+      cursor: pointer;
+      transition: transform 0.15s, background 0.15s;
+      font-weight:600;
+    }
+
+    .category-item:hover {
+      transform: scale(1.03);
+      background-color: #e9f0ff;
+      color: #1e40af;
+    }
+
+    /* Cards area */
+    .card-container {
+      display: flex;
+      justify-content: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid #efefef;
+      border-radius: 10px;
+      width: 300px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.04);
+      transition: box-shadow 0.25s, transform 0.18s;
+    }
+
+    .card:hover {
+      box-shadow: 0 18px 45px rgba(39,88,255,0.12);
+      transform: translateY(-6px);
+      border-color: rgba(39,88,255,0.12);
+    }
+
+    .card img {
+      width: 100%;
+      height: 170px;
+      object-fit: cover;
+      display:block;
+    }
+
+    .card-content {
+      padding: 14px;
+    }
+
+    .card h3 {
+      margin: 0 0 8px 0;
+      font-size: 18px;
+    }
+
+    .card p {
+      margin: 4px 0;
+      color: #666;
+      font-size: 14px;
+    }
+
+    /* Offers simple list */
+    .offers-list {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      flex-wrap:wrap;
+    }
+
+    .offer-card {
+      background: #fffbe6;
+      padding: 16px;
+      border-radius: 10px;
+      text-align: center;
+      width: 220px;
+      border: 2px dashed #ffe0a8;
+    }
+
+    footer {
+      background-color: #2d3436;
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+      margin-top: 30px;
+    }
+
+    footer a {
+      color: #9fd3ff;
+      margin: 0 8px;
+      text-decoration: none;
+    }
+
+    @media (max-width: 900px) {
+      #intro { flex-direction: column; }
+      .intro-image { width:100%; height:220px; }
+      nav { flex-direction: column; gap:12px; align-items:flex-start; }
+      nav ul { order:2; width:100%; justify-content:flex-start; }
+      .actions { order:3; width:100%; justify-content:flex-start; gap:8px; }
+    }
+
+    @media (max-width: 600px) {
+      .card { width: 100%; max-width:420px; }
+      .intro-text h1 { font-size:28px; }
+      .search-container input, .search-container select { width:100%; max-width:320px; display:block; margin-left:auto; margin-right:auto;}
+      nav ul { gap:10px; flex-wrap:wrap; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <h1>LearnFast</h1>
+
+    <ul>
+      <li><a href="#courses">Courses</a></li>
+      <li><a href="#offers">Offers</a></li>
+      <li><a href="#testimonials">Testimonials</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+
+    <div class="actions">
+      <button class="btn ghost">Log in</button>
+      <button class="btn">Get Started</button>
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <section id="intro">
+      <div class="intro-text">
+        <h1>Learn practical skills,<br>build real projects</h1>
+        <p>Interactive, project-based courses with mentor feedback. Upskill quickly and create portfolio-ready projects employers notice.</p>
+        <br>
+        <button class="btn" id="exploreBtn">Explore Courses</button>
+      </div>
+
+      <div class="intro-image">
+        <img src="https://images.unsplash.com/photo-1533750349088-cd871a92f312?q=80&w=1200&auto=format&fit=crop" alt="Students learning online">
+      </div>
+    </section>
+
+    <section class="search-container">
+      <form>
+        <label for="topic">Topic:</label>
+        <select id="topic">
+          <option>All Topics</option>
+          <option>Web Development</option>
+          <option>Data Science</option>
+          <option>Design</option>
+        </select>
+
+        <label for="level">Level:</label>
+        <select id="level">
+          <option>All Levels</option>
+          <option>Beginner</option>
+          <option>Intermediate</option>
+          <option>Advanced</option>
+        </select>
+
+        <button type="button">Search</button>
+      </form>
+    </section>
+
+    <section id="courses">
+      <h2>Popular Courses</h2>
+
+      <div class="card-container" id="coursesGrid">
+        <article class="card">
+          <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1200&auto=format&fit=crop" alt="Front-end course image">
+          <div class="card-content">
+            <h3>Front-End Web Development</h3>
+            <p>HTML • CSS • JavaScript</p>
+            <p><small>Build interactive websites and apps</small></p>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=1200&auto=format&fit=crop" alt="Data science course image">
+          <div class="card-content">
+            <h3>Python for Data Science</h3>
+            <p>Python • Pandas • ML basics</p>
+            <p><small>Hands-on data analysis projects</small></p>
+          </div>
+        </article>
+
+        <article class="card">
+          <img src="https://images.unsplash.com/photo-1496307042754-b4aa456c4a2d?q=80&w=1200&auto=format&fit=crop" alt="UI/UX course image">
+          <div class="card-content">
+            <h3>UI / UX Design Essentials</h3>
+            <p>Figma • Prototyping • Design systems</p>
+            <p><small>Design usable and beautiful interfaces</small></p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="offers">
+      <h2>Promo Offers</h2>
+      <ul class="offers-list">
+        <li class="offer-card">
+          <h3>🎉 25% OFF</h3>
+          <p>On annual Pro plan</p>
+        </li>
+        <li class="offer-card">
+          <h3>🚚 Free Trial</h3>
+          <p>Start with a 7-day trial</p>
+        </li>
+        <li class="offer-card">
+          <h3>👥 Student Discount</h3>
+          <p>Special pricing for students</p>
+        </li>
+      </ul>
+    </section>
+
+    <section id="testimonials">
+      <h2>What learners say</h2>
+      <div class="card-container">
+        <article class="card" style="width:320px;">
+          <div class="card-content" style="text-align:center">
+            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Learner" style="width:60px;height:60px;border-radius:50%;display:block;margin:0 auto 8px;">
+            <p>★★★★★</p>
+            <p>"Excellent courses and great mentors — helped me land an internship."</p>
+            <p><strong>Riya</strong></p>
+          </div>
+        </article>
+
+        <article class="card" style="width:320px;">
+          <div class="card-content" style="text-align:center">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Learner" style="width:60px;height:60px;border-radius:50%;display:block;margin:0 auto 8px;">
+            <p>★★★★★</p>
+            <p>"Practical and well-structured. The projects were very helpful."</p>
+            <p><strong>Amit</strong></p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2 style="text-align:center">Contact</h2>
+      <div class="search-container" style="max-width:700px;margin:12px auto;">
+        <p style="margin:0;color:#555">For questions or partnerships, email <strong>kartik7299@learnfast.example</strong></p>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    <h3>LearnFast</h3>
+    <nav style="background:none; justify-content:center; box-shadow:none;">
+      <a href="#">About</a> |
+      <a href="#">Privacy</a> |
+      <a href="#">Terms</a> |
+      <a href="#">Contact</a>
+    </nav>
+    <p>Follow us: Facebook | Twitter | Instagram</p>
+    <p>&copy; 2025 LearnFast. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Simple: when hovering Explore Courses, highlight all course cards (same feel as earlier)
+    const explore = document.getElementById('exploreBtn');
+    const cards = document.querySelectorAll('#coursesGrid .card, .card-container .card');
+
+    if (explore) {
+      explore.addEventListener('mouseenter', () => {
+        cards.forEach(c => c.classList.add('highlight'));
+      });
+      explore.addEventListener('mouseleave', () => {
+        cards.forEach(c => c.classList.remove('highlight'));
+      });
+    }
+
+    // simple CSS hook for highlight
+    const style = document.createElement('style');
+    style.textContent = ".highlight{ box-shadow:0 18px 45px rgba(39,88,255,0.12) !important; transform:translateY(-6px) !important; border-color:rgba(39,88,255,0.12) !important; }";
+    document.head.appendChild(style);
+  </script>
+</body>
+</html>
